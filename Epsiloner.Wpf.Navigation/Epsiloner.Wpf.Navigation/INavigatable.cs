@@ -11,7 +11,7 @@ namespace Epsiloner.Wpf.Navigation
         /// Event to request navigation to close owned <see cref="ShellBase"/>.
         /// Supportable only if opened in <see cref="NavigationMode.DialogWindow"/> or <see cref="NavigationMode.ChildWindow"/> mode.
         /// </summary>
-        event EventHandler RequestClose; //TODO: Not used by Navigation module.
+        event EventHandler RequestClose;
 
         /// <summary>
         /// Executed when navigation completed.

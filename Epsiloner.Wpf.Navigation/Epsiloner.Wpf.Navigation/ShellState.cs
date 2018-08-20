@@ -71,12 +71,24 @@ namespace Epsiloner.Wpf.Navigation
             (Data as IDisposable)?.Dispose();
             Data = null;
 
+            var navigatable = Data as INavigatable;
+            if (navigatable != null)
+                navigatable.RequestClose -= NavigatableOnRequestClose;
+
             try
             {
                 Shell.Owner = null;
             }
             catch (Exception) { }
             IsLoaded = false;
+        }
+
+        private void NavigatableOnRequestClose(object sender, EventArgs e)
+        {
+            if (Config.BlockWindowClose)
+                return;
+
+            Shell.Close();
         }
 
         /// <summary>
@@ -92,6 +104,10 @@ namespace Epsiloner.Wpf.Navigation
             Config = config;
             Target = target;
             Data = data;
+            var navigatable = Data as INavigatable;
+            if (navigatable != null)
+                navigatable.RequestClose += NavigatableOnRequestClose;
+
             UnloadView();
             View = Shell.SetContent(data, target?.GetType());
             IsLoaded = true;
@@ -148,7 +164,7 @@ namespace Epsiloner.Wpf.Navigation
 
         public void Dispose()
         {
-            Shell.Dispatcher.Invoke(Unload);
+            Unload();
 
             var app = Application.Current;
 
