@@ -1,0 +1,14 @@
+﻿<windows:BaseWindow
+    x:Class="Sample_1.Windows.MainWindow"
+        
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:Epsiloner.Wpf.Navigation;assembly=Epsiloner.Wpf.Navigation"
+    xmlns:windows="clr-namespace:Sample_1.Windows"
+    mc:Ignorable="d"
+    Height="300" 
+    Width="300">
+    <ContentControl Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=navigation:ShellBase}, Path=ContentPresenter, Mode=OneTime}" />
+</windows:BaseWindow>
