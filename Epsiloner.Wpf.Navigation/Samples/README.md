@@ -23,4 +23,28 @@ Shows how to use **Epsiloner.Wpf.Navigation** in WPF application where each modu
    5. OnStartup we need to start navigation - in sample we navigating to IndexNavigationTarget.
    
    
-   [TBD]
+Modules (aka pages) in Sample_1 are declared in separate project each:
+   - Sample_1.Modules.Index
+   - Sample_1.Modules.Details
+   
+Both structure is similar:
+   - ViewModels - contains view models used only by this module
+   - Views - contains views and other controls used only by this module
+   - Configs - contains INavigationConfig implementation where described configuration for IndexNavigationTarget or DetailsNavigationTarget. These configs also generates ViewModel on requiest.
+   - Setup.cs - static class which constructor is invoked when assembly is loaded.
+
+
+**Differences**:
+   - Index module - Setup.cs - registers config directly, when Setup in Details module only registers it for ConfigResolver. (see **Note 1**)
+   - Index module - IndexViewModel.cs - implements optional interface for data - INavigatable which provides additional functionality for ViewModel, like request to close window(shell) and method Navigated() which is invoked once navigation completed. (occurs before similar method invoked in View)
+   - Index module - IndexView.xaml.cs - implements optional interface for view - INavigatableView which provides additional functionality for View like:
+      - Navigated(owner shell, parent shell) method - invoked once navigation completed (occurs after similar method invoked in ViewModel). Gives oportunity to edit window properties, like Width, Height, Title, etc..
+      - Unloading(owner shell) method - invoked when leaving view (navigating to another view, closing window, etc..) to reset custom modifications made to window - like set WindowStyle to previous value - in case that view should be shown without header and buttons.
+   
+   
+**Note 1**: Sample_1 has no IoC, so method ConfigResolver in App.xaml.cs is made just for example. In real world there should be IoC resolve method. (Tested with Unity)
+
+
+**Note 2**: It possible to register multiple configs for same target. **Please avoid that at least in first releases, because it is not tested yet.**
+
+
