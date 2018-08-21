@@ -14,11 +14,11 @@ namespace Sample_1
         /// <inheritdoc />
         public App()
         {
-            Navigation.Dispatcher = Dispatcher;
-            Navigation.SetShellResolver(new SingleThreadShellResolver());
+            //Navigation.Dispatcher = Dispatcher;
+            //Navigation.SetShellResolver(new SingleThreadShellResolver());
             //Note: this sample also provides useful MultiThreadShellResolver which will put all windows
             // into separate dispatchers (and threads) except child windows and dialogs.S
-            //Navigation.SetShellResolver(new MultiThreadShellResolver());
+            Navigation.SetShellResolver(new MultiThreadShellResolver());
 
             //TODO: Load all assemblies which can contain navigation configs
             //For example, you use this example to load assemblies dynamicall

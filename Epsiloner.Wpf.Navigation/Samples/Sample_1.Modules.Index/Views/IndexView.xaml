@@ -18,5 +18,8 @@
         <Button Content="Go to Details" 
                 CommandParameter="{Binding ElementName=txtParam, Path=Text}" 
                 Command="{Binding GoToDetailsCommand, Mode=OneWay}"/>
+        
+        <Button Command="{Binding RequestCloseCommand, Mode=OneWay}"
+                Content="RequestClose"/>
     </StackPanel>
 </UserControl>
