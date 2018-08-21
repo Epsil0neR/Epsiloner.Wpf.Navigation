@@ -129,10 +129,13 @@ namespace Epsiloner.Wpf.Navigation
             {
                 foreach (var type in matches)
                 {
-                    var parameterizedGeneric = GetParameterizedGeneric(generic, type);
                     INavigationConfig<INavigationTarget> config = configResolver(type);
 
-                    RegisterTarget(parameterizedGeneric.GenericTypeArguments.First(), config);
+                    if (config != null) // Check if config successfully resolved. 
+                    {
+                        var parameterizedGeneric = GetParameterizedGeneric(generic, type);
+                        RegisterTarget(parameterizedGeneric.GenericTypeArguments.First(), config);
+                    }
                 }
             });
         }
