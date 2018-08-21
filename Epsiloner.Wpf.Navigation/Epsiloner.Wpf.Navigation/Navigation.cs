@@ -16,7 +16,6 @@ namespace Epsiloner.Wpf.Navigation
     {
         #region Events
 
-        //TODO: Maybe rename this event.
         /// <summary>
         /// Indicates that navigation has completed and application can be closed.
         /// </summary>
@@ -25,11 +24,9 @@ namespace Epsiloner.Wpf.Navigation
         #endregion
 
         #region Fields
-        private static readonly Dictionary<Type, List<INavigationConfig<INavigationTarget>>> _navitaionTargetToConfigs
-            = new Dictionary<Type, List<INavigationConfig<INavigationTarget>>>();
+        private static readonly Dictionary<Type, List<INavigationConfig<INavigationTarget>>> _navitaionTargetToConfigs = new Dictionary<Type, List<INavigationConfig<INavigationTarget>>>();
         private static readonly List<ShellState> _states = new List<ShellState>();
         private static Task _navigationTask = Task.CompletedTask;
-        private static object _navigationLock = new object();
 
         private static IShellResolver _shellResolver;
         #endregion
@@ -135,7 +132,6 @@ namespace Epsiloner.Wpf.Navigation
                     var parameterizedGeneric = GetParameterizedGeneric(generic, type);
                     INavigationConfig<INavigationTarget> config = configResolver(type);
 
-                    //TODO: Improve quality of getting generic parameter
                     RegisterTarget(parameterizedGeneric.GenericTypeArguments.First(), config);
                 }
             });
@@ -197,7 +193,7 @@ namespace Epsiloner.Wpf.Navigation
 
             lock (_navigationTask)
             {
-                _navigationTask = _navigationTask.ContinueWith(_ => NavigateInner(target).Wait());
+                _navigationTask = _navigationTask.ContinueWith(_ => NavigateInner(target).Wait(), TaskContinuationOptions.LongRunning);
                 task = _navigationTask;
             }
 

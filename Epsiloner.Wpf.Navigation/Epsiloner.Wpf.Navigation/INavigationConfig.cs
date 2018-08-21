@@ -5,6 +5,7 @@ namespace Epsiloner.Wpf.Navigation
 {
     /// <summary>
     /// Navigation configuration for navigation target.
+    /// NOTE: Implementation must be without type parameters.
     /// </summary>
     /// <typeparam name="T">Navigation target type.</typeparam>
     /// <remarks>Type parameter is required for registration.</remarks>
