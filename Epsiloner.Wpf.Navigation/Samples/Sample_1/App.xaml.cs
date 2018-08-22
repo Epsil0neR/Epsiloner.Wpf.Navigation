@@ -25,19 +25,21 @@ namespace Sample_1
             AppDomain.CurrentDomain.LoadAssemblies("Sample_1.Modules.*.dll");
             AppDomain.CurrentDomain.InitializeTypesFromAttribute().Wait();
 
-            Navigation.RegisterAvailableConfigs(ConfigResolver);
-
             Navigation.AllWindowsClosed += NavigationOnAllWindowsClosed;
             Navigation.NavigationFailed += NavigationOnNavigationFailed;
 
+            //React when view or config dynamically are loaded dynamically after all have been proeceeded.
+            AppDomain.CurrentDomain.AssemblyLoad += CurrentDomainOnAssemblyLoad;
+            //Proceed all configs
+            Navigation.RegisterAvailableConfigs(ConfigResolver);
             //Proceed all views
             ViewForAttribute.ProceedRelatedAssemblies();
-            AppDomain.CurrentDomain.AssemblyLoad += CurrentDomainOnAssemblyLoad;
         }
 
         private void CurrentDomainOnAssemblyLoad(object sender, AssemblyLoadEventArgs args)
         {
             ViewForAttribute.ProceedAssembly(args.LoadedAssembly);
+            Navigation.RegisterAvailableConfigs(args.LoadedAssembly, ConfigResolver);
         }
 
         private void NavigationOnAllWindowsClosed(object sender, EventArgs e)

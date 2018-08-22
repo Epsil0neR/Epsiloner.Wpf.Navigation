@@ -1,6 +1,10 @@
 # Epsiloner.Wpf.Navigation
 
-Epsiloner.Wpf.Navigation is a framework similar to Prism for building loosely coupled, maintanable, testable XAML application in WPF with objects as parameters.
+Epsiloner.Wpf.Navigation is a framework similar to 
+
+[Prism]: https://prismlibrary.github.io/	"Link to Prism"
+
+for building loosely coupled, maintanable, testable XAML application in WPF with objects as parameters.
 Provides a design pattern that are helpful in writing well-structured and maintanable applications.
 It allows to have each page in separate project with dynamic registration of each page and ability to correctly navigate to each page by defining classes (that implements INavigationTarget) with corresponding parameters.
 
