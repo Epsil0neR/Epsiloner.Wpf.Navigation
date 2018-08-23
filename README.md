@@ -1,5 +1,12 @@
 # Epsiloner.Wpf.Navigation
 
+[![NuGet](https://img.shields.io/nuget/v/Epsiloner.Wpf.Navigation.svg)](https://www.nuget.org/packages/Epsiloner.Wpf.Navigation/)
+[![NuGet](https://img.shields.io/nuget/dt/Epsiloner.Wpf.Navigation.svg)](https://www.nuget.org/packages/Epsiloner.Wpf.Navigation/)
+[![GitHub](https://img.shields.io/github/license/Epsil0neR/Epsiloner.Wpf.Navigation.svg)](https://github.com/Epsil0neR/Epsiloner.Wpf.Navigation)
+[![GitHub issues](https://img.shields.io/github/issues/Epsil0neR/Epsiloner.Wpf.Navigation.svg)](https://github.com/Epsil0neR/Epsiloner.Wpf.Navigation)
+
+[Samples](https://github.com/Epsil0neR/Epsiloner.Wpf.Navigation/tree/master/Epsiloner.Wpf.Navigation/Samples)
+
 Epsiloner.Wpf.Navigation is a framework similar to [Prism](https://prismlibrary.github.io/) for building loosely coupled, maintanable, testable XAML application in WPF with objects as parameters.
 Provides a design pattern that are helpful in writing well-structured and maintanable applications.
 It allows to have each page in separate project with dynamic registration of each page and ability to correctly navigate to each page by defining classes (that implements INavigationTarget) with corresponding parameters.
